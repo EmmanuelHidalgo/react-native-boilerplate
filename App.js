@@ -1,33 +1,27 @@
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createAppContainer } from 'react-navigation';
-
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 
 // Screens
 import HomeScreen from './src/screens/HomeScreen';
 import AboutScreen from './src/screens/AboutScreen';
 import ContactScreen from './src/screens/ContactScreen';
 import BlogsScreen from './src/screens/BlogsScreen';
+import DogsScreen from './src/screens/DogScreen';
 
 
-//Stacks-Routes
-import DemosStack from './src/routes/DemosStack';
+const Tab = createBottomTabNavigator();
 
-const RootDrawerNavigator = createDrawerNavigator({
-  "Home": {
-    screen: HomeScreen,
-  },
-  "Blogs": {
-    screen: BlogsScreen
-  },
-  "Demos": {
-    screen: DemosStack
-  },
-  "About": {
-    screen: AboutScreen
-  },
-  "Contact": {
-    screen: ContactScreen
-  }
-})
-
-export default createAppContainer(RootDrawerNavigator);
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Blogs" component={BlogsScreen} />
+        <Tab.Screen name="About" component={AboutScreen} />
+        <Tab.Screen name="Contact" component={ContactScreen} />
+        <Tab.Screen name="Seach Dog" component={DogsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
